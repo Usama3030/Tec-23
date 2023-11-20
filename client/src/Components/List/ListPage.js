@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { format } from "date-fns";
 import liststyles from "./List.module.css";
-import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import Cookies from "js-cookie";
+import { IoIosArrowBack, IoIosArrowForward, IoMdCreate } from "react-icons/io";
 
 const ListPage = () => {
   const navigate = useNavigate();
@@ -11,6 +12,7 @@ const ListPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const entriesPerPage = 10;
   const [rangeConfigrations, setRangeConfigrations] = useState([]);
+  const [newChecklistId, setNewChecklistId] = useState(null);
 
   const indexOfLastEntry = currentPage * entriesPerPage;
   const indexOfFirstEntry = indexOfLastEntry - entriesPerPage;
@@ -44,6 +46,31 @@ const ListPage = () => {
       console.error("An error occurred:", error);
     }
   }, [currentPage]);
+
+  const handleEditClick = async (entry) => {
+    try {
+      const newId = entry._id; // Get the id by
+      setNewChecklistId(newId);
+      Cookies.set("newChecklistId", newId);
+      console.log("newId", newId);
+        // Fetch data from the backend for the selected checklist
+    // const response = await axios.get(`${process.env.REACT_APP_NODE_API}/api5/getAlreadyChecklistData/${newId}`);
+    // const checklistFilledData = response.data;
+    // console.log("checklistData", checklistFilledData);
+  
+      navigate("/home", {
+        state: {
+          formData: {
+            type: entry.checklistTypeID._id,
+          },
+           checklistTypeId: entry.checklistTypeID._id,
+          // checklistTypeId: entry._id,
+        },
+      });
+    } catch (error) {
+      console.error("An error occurred:", error);
+    }
+  };
 
   // const getColorForScore = (score) => {
   //   for (const config of rangeConfigrations) {
@@ -160,6 +187,7 @@ const ListPage = () => {
                   <div className={liststyles.col}>Building</div>
                   <div className={liststyles.col}>Date</div>
                   <div className={liststyles.col}>Score</div>
+                  <div className={liststyles.col}>Action</div>
                 </div>
                 {renderedData
                   .sort((a, b) =>
@@ -192,7 +220,14 @@ const ListPage = () => {
                        {/* <div className={liststyles.col} style={{ color: getColorForScore(entry.score) }}>
                         {getColorForScore(entry.score)}
                       </div> */}
-                      
+                       <div className={liststyles.col}>
+                        <button
+                          className={liststyles.btn_edit}
+                          onClick={() => handleEditClick(entry)}
+                        >
+                          <IoMdCreate />
+                        </button>
+                      </div>
                     </div>
                   ))}
               </div>

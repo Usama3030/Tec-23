@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 import liststyles from "./Dashboard.module.css";
 
 const Dashboard = () => {
@@ -16,23 +16,14 @@ const Dashboard = () => {
 
 
  
-  const navigateToForm = () => {
-    navigate("/list");
-  };
+  // const navigateToForm = () => {
+  //   console.log("button clicked");
+  //   navigate("/list");
+  // };
 
-  const navigateToBusiness = () => {
-    onclick = () => {
-        console.log("button clicked");
-        navigate("/business");
-    }
-  };
-
-  const navigateToBuildings = () => {
-    navigate("/list");
-  };
-  const navigateToUsers = () => {
-    navigate("/list");
-  };
+  // const navigateToBuildings = () => {
+  //   navigate("/list");
+  // };
 
 
   return (
@@ -55,47 +46,46 @@ const Dashboard = () => {
             <p>Dashboard</p>
           </div>
           <div className={liststyles.body_navigation}>
-          <div className={liststyles.card_navigation}>
+          {/* <div className={liststyles.card_navigation}>
             <button
               className={liststyles.button_navigation}
-              onClick={navigateToForm}
+              onClick={()=>navigateToForm}
             >
               List of Checklist
             </button>
-          </div>
+          </div> */}
+          <NavLink style={{ textDecoration: "none", color: "white" }}  to="/list">
           <div className={liststyles.card_navigation}>
-            <button
-              className={liststyles.button_navigation}
-              onClick={navigateToBusiness}
-            >
-              Create Businesses
-            </button>
-          </div>
+          List of Checklist
+            </div>
+          </NavLink>
+          <NavLink style={{ textDecoration: "none", color: "white" }}  to="/business">
           <div className={liststyles.card_navigation}>
+          Create Businesses
+            </div>
+          </NavLink>
+          <NavLink style={{ textDecoration: "none", color: "white" }}  to="/assigning">
+          <div className={liststyles.card_navigation}>
+          Assign Task
+            </div>
+          </NavLink>
+          <NavLink style={{ textDecoration: "none", color: "white" }}  to="/user">
+          <div className={liststyles.card_navigation}>
+          Create Users
+            </div>
+          </NavLink>
+          {/* <div className={liststyles.card_navigation}>
             <button
               className={liststyles.button_navigation}
               onClick={navigateToBuildings}
             >
               Create Buildings
             </button>
+          </div> */}
           </div>
-          <div className={liststyles.card_navigation}>
-            <button
-              className={liststyles.button_navigation}
-              onClick={navigateToUsers}
-            >
-            Create Users
-            </button>
-          </div>
-          </div>
-          <div className={liststyles.tableContainer}>
-           
-          </div>
-          <div className={liststyles.pagination}>
           </div>
         </div>
-      </div>
-    </div>
+        </div>
   );
 };
 

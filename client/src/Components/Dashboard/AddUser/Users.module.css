@@ -1,0 +1,130 @@
+/* .user {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    background: #fff;
+    border: 1px solid #dddfe2;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+    border-radius: 8px;
+    padding: 1rem;
+    align-items: center;
+    text-align: center;
+    @media (max-width: 767px) {
+        width: 80%;
+        max-width: 400px; 
+        padding: 15px;
+  }
+}
+
+.user > form input {
+    border-radius: 20px;
+    border: 2px solid lightgrey;
+    outline: none;
+    color: #1d2129;
+    margin: 2% 0;
+    width: 90%;
+    padding: 12px;
+    font-size: 16px;
+}
+.button_common {
+    background-color: olivedrab;
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    font-size: 22px;
+    border-radius: 15px;
+    margin: 1rem;
+    width: 90%;
+}
+.button_common:hover {
+    background-color: #4C4B16;
+}
+.error {
+    color: red;
+    text-align: left;
+    margin: auto;
+    font-size: 16px;
+    padding: 0px 1rem;
+} */
+
+
+.user {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 20px;
+    background-color: #f1f1f1;
+    width: 80%;
+    margin: 0 auto;
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+    overflow: auto;
+    @media (max-width: 767px) {
+      max-width: 90%;
+  }
+  }
+  
+  h1 {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+  
+  .user_body {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+    margin: 10px 0;
+  }
+  
+  .headings {
+    width: 100%;
+    margin-bottom: 0.3rem;
+    margin-top: 0.1rem
+  }
+  
+  .option {
+    flex-basis: calc(40% - 10px);
+    display: flex;
+    flex-direction: column;
+    margin: 5px 0;
+    @media (max-width: 767px) {
+       flex-basis: 100%;
+    }
+  }
+  
+  
+  label {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  
+  input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    width: 90%;
+    border-radius: 0.5rem;
+  }
+  
+  
+  .error {
+    color: red;
+  }
+  
+  
+  .button_common {
+    margin: 10px auto;
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  

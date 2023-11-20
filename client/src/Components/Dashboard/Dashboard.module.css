@@ -94,7 +94,12 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  /* justify-content: flex-start; */
 }
+/* .body_navigation > * {
+  flex: 0 0 calc(25% - 10px);
+  margin: 5px;
+} */
 .card_navigation {
   display: flex;
   justify-content: center;
@@ -115,6 +120,7 @@
 
 .button_navigation {
   color: #fff; 
+  background-color: red;
   font-size: 1rem;
   text-align: center;
   text-transform: uppercase;

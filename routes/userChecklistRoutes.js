@@ -10,5 +10,18 @@ router.get(
   "/getChecklistData/:id",
   userChecklistController.getUserChecklistsData
 );
+router.put(
+  "/updateUserChecklists/:checklistId",
+  userChecklistController.updateUserChecklistStatus
+);
+router.get(
+  "/getAlreadyChecklistData/:id",
+  userChecklistController.getUserAlreadyChecklistsData
+);
+
+router.put(
+  "/updateAlreadyUserChecklists/:id",
+  userChecklistController.updateUserAlreadyChecklistsData
+);
 
 module.exports = router;

@@ -1,100 +1,263 @@
- .business {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 50%;
-    background: #fff;
-    border: 1px solid #dddfe2;
-    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
-    border-radius: 8px;
-    padding: 1rem;
-    @media (max-width: 767px) {
-        width: 80%;
-        max-width: 400px; 
-        padding: 15px;
-        align-items: center;
-        text-align: center;
+/* .business {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 20px;
+  background-color: #f1f1f1;
+  width: 80%;
+  margin: 0 auto;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  overflow: auto;
+  @media (max-width: 767px) {
+    max-width: 90%;
+}
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+
+.business_body {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+  margin: 10px 0;
+}
+
+.headings {
+  width: 100%;
+  margin-bottom: 0.3rem;
+  margin-top: 0.1rem
+}
+
+.option {
+  flex-basis: calc(40% - 10px);
+  display: flex;
+  flex-direction: column;
+  margin: 5px 0;
+  @media (max-width: 767px) {
+    flex-basis: 100%;
+ }
+}
+
+
+label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+
+input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  width: 90%;
+  border-radius: 0.5rem;
+}
+
+
+.error {
+  color: red;
+}
+
+
+.button_common {
+  margin: 10px auto;
+  padding: 10px 20px;
+  background-color: #007BFF;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.ar_button {
+display: flex;
+flex-wrap: wrap;
+flex-direction: row-reverse;
+justify-content: space-between;
+max-width: 3rem;
+margin: 0px;
+margin-top: -20px;
+}
+.add_button {
+  background-color: green;
+  max-width: 1rem;
+  border-radius: 2rem;
+}
+
+.remove_button {
+  color: red;
+  max-width: 1rem;
+  border-radius: 2rem;
+}
+
+.subBusiness {
+  .business_body {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+    margin: 10px 0;
+    background-color: red;
+  }
+} */
+
+
+/* Style for the whole form container */
+.business {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: #F1F1F1;
+  padding: 20px;
+  width: 80%;
+  margin: 0 auto;
+  overflow: auto;
+  @media (max-width: 767px) {
+    max-width: 90%;
+}
+}
+
+/* Style for the form title */
+h1 {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.business_body {
+  width: inherit;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  margin: 10px 0;
+  /* border:  1px solid black; */
+}
+
+.headings {
+  width: 100%;
+  margin-bottom: 0.3rem;
+  margin-top: 0.1rem
+}
+
+/* Style for input containers (two inputs in one row) */
+.option1 {
+  flex-basis: calc(80% - 10px);
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+  @media (max-width: 768px) {
+      width: 90%;
   }
 }
-  .container {
-    max-width: 1200px;
+.option {
+  flex-basis: calc(50% - 10px);
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+  @media (max-width: 768px) {
+      width: 90%;
+  }
+}
+
+/* Style for labels */
+label {
+  font-weight: bold;
+  margin-right: 10px;
+  width: 40%; /* Adjust width as needed */
+}
+
+/* Style for input fields */
+input[type="text"],
+input[type="number"],
+input[type="email"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+.ar_button {
+  /* background-color: black; */
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  height: fit-content;
+  width: fit-content;
+
+  margin: 0px;
+  }
+.add_button button {
+  background-color: rgb(67, 235, 67); 
+  color: black;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 10%;
+  cursor: pointer;
+}
+.remove_button button {
+  background-color: #ED5E68; 
+  color: black;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 10%;
+  cursor: pointer;
+}
+
+/* Style for the "SubBusiness" container */
+.subBusiness {
+  background-color: white; /* Red color */
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid black;
+  margin: 20px 0;
+  width: inherit;
+    /* display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: #F1F1F1;
+    padding: 20px;
+    width: 80%;
     margin: 0 auto;
-    padding: 20px;
-  }
-  
-  /* Business form styles */
-  .business-form {
-    background: #fff;
-    border: 1px solid #dddfe2;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    padding: 20px;
-    margin: 20px auto;
-    max-width: 600px;
-  }
-  
-  /* Form header styles */
-  .business-form h1 {
-    font-size: 24px;
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  /* Form input styles */
-  .business-form input {
-    border-radius: 10px;
-    border: 2px solid #ddd;
-    outline: none;
-    color: #333;
-    margin: 10px 0;
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-  }
-  
-  /* Error message styles */
-  .error {
-    color: red;
-    font-size: 14px;
-    margin-top: 5px;
-  }
-  
-  /* Submit button styles */
-  .business-form button {
-    background-color: #35495e;
-    color: #fff;
-    padding: 15px 30px;
-    border: none;
-    font-size: 18px;
-    border-radius: 15px;
-    margin: 20px 0;
-    width: 100%;
-    cursor: pointer;
-  }
-  
-  .business-form button:hover {
-    background-color: #273847;
-  }
-  
-  /* Footer styles */
-  footer {
-    background-color: #35495e;
-    color: #fff;
-    padding: 10px;
-    text-align: center;
-  }
-  
-  /* Responsive styles for smaller screens */
-  @media (max-width: 767px) {
-    .business-form {
-      padding: 15px;
-    }
-    .business-form input {
-      width: 100%;
-    }
-    .business-form button {
-      width: 100%;
-    }
-  }
-  
+    overflow: auto;
+    @media (max-width: 767px) {
+      max-width: 90%;
+  } */
+}
+
+/* Style for the "Building" container */
+.building {
+  background-color: #F1F1F1; /* Blue color */
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid black;
+  margin: 20px 0;
+  width: inherit; /* Set width to 80% of the screen */
+}
+
+/* Style for error messages */
+.error {
+  color: red;
+  font-size: 14px;
+}
+
+/* Style for the Register button */
+.button_common {
+  background-color: #007BFF; /* Blue color */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+
