@@ -5,18 +5,18 @@ const userChecklistSchema = new Schema({
   userID: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
-    required: true,
+    // required: true,
   },
   businessID: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Businesses",
-    required: true,
+    // required: true,
   },
   buildingID: {
     type: mongoose.Schema.Types.ObjectId,
     // ref: "Buildings",
     // ref: "Businesses",
-    required: true,
+    // required: true,
   },
   checklistTypeID: {
     type: mongoose.Schema.Types.ObjectId,
@@ -48,6 +48,12 @@ const userChecklistSchema = new Schema({
   updatedAt: { type: Date, default: Date.now },
   createdAt: { type: Date, default: Date.now },
   score: { type: Number },
+  dueDate: {type: Date},
+  AssignedUserId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+  },
+  Status: {type: String},
 });
 
 const UserChecklistModel = mongoose.model("userChecklist", userChecklistSchema);

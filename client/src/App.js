@@ -1,54 +1,30 @@
 import "./App.css";
 import React, { useState } from "react";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Navigate,
-} from "react-router-dom";
-import Login from "./Components/Login/Login";
-import Register from "./Components/Register/Register";
-import Home from "./Components/Home/Home";
-import ListPage from "./Components/List/ListPage";
-import ValidateForm from "./Components/Form/validateform";
-import Dashboard from "./Components/Dashboard/Dashboard";
-import AddBusiness from "./Components/Dashboard/AddBusiness/AddBusiness";
+import Routees from "./Routes/Routes";
+import backgroundImage from "./assets/register_bg_2.png";
 
 function App() {
   const [userState, setUserState] = useState({});
 
   return (
-    <div className="App">
-      <Router>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              userState && userState._id ? (
-                <Navigate to="/list" />
-              ) : (
-                <Login setUserState={setUserState} />
-              )
-            }
-          />
-          <Route
-            path="/login"
-            element={<Login setUserState={setUserState} />}
-          />
-          <Route path="/signup" element={<Register />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/list" element={<ListPage />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/business" element={<AddBusiness />} />
-          <Route
-            path="/validateform"
-            element={
-              <ValidateForm userName={userState.name} userId={userState._id} />
-            } // Pass userName prop
-          />
-        </Routes>
-      </Router>
-    </div>
+    <>
+      {/* <div className="App">
+<Routees userState={userState} setUserState={setUserState} />
+</div> */}
+      <div>
+        {/* <div
+        className="app flex items-center justify-center w-screen h-screen bg-black"
+        style={{
+          // backgroundImage:
+          //   'url("https://i.pinimg.com/236x/d0/64/5a/d0645a0ce8178eea07e699158cc4f7d0.jpg")',
+          backgroundImage: `url(${backgroundImage})`,
+          backgroundSize: "cover", // or 'contain'
+          backgroundPosition: "center",
+        }}
+      > */}
+        <Routees userState={userState} setUserState={setUserState} />
+      </div>
+    </>
   );
 }
 

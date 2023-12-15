@@ -12,6 +12,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 const mongoose = require("../db/db");
+const { use } = require("../routes/userChecklistRoutes");
 
 // List page sending Data
 const getUserChecklists = async (req, res) => {
@@ -30,15 +31,48 @@ const getUserChecklists = async (req, res) => {
         },
       })
       .populate("userID", "name")
-      .populate("checklistTypeID", "type rangeConfigrations")
-      .select("businessID buildingID userID createdAt score checklistTypeID ");
+      .populate("AssignedUserId", "name")
+      .populate("checklistTypeID", "type _id rangeConfigrations")
+      .select("businessID buildingID userID AssignedUserId createdAt updatedAt score Status dueDate checklistTypeID ");
 
     res.json(userChecklists);
+    // console.log(userChecklists);
   } catch (error) {
     console.error("Error fetching user checklists:", error);
     res.status(500).json({ error: "Error fetching user checklists" });
   }
 };
+
+// update the Status value in list page 
+const updateUserChecklistStatus = async (req, res) => {
+  try {
+      const { Status } = req.body;
+      const { checklistId } = req.params;
+      console.log("Updating User Checklist Status with ID:", checklistId);
+      console.log("Updated Status:", Status);
+
+      // Check if the checklistId is valid
+      const existingChecklist = await UserChecklistModel.findById(checklistId);
+
+      if (!existingChecklist) {
+          return res.status(404).json({ message: "User Checklist not found" });
+      }
+
+      // Update only the Status field
+      existingChecklist.Status = Status;
+
+      // Save the updated checklist
+      await existingChecklist.save();
+
+      console.log("Status updated successfully");
+
+      return res.status(200).json({ message: "Status updated successfully", checklistId });
+  } catch (error) {
+      console.error("Error in updating Status", error);
+      res.status(500).json({ message: "Internal server Error" });
+  }
+};
+
 
 
 // create checklist page according to business, building, checklistType, and User
@@ -98,6 +132,98 @@ const compareUserChecklists = async (req, res) => {
   }
 };
 
+// update the Status value in list page 
+const updateUserAlreadyChecklistsData = async (req, res) => {
+  try {
+      const { Status } = req.body;
+      const { checklistId } = req.params;
+      console.log("Updating User Checklist Status with ID:", checklistId);
+      console.log("Updated Status:", Status);
+
+      // Check if the checklistId is valid
+      const existingChecklist = await UserChecklistModel.findById(checklistId);
+
+      if (!existingChecklist) {
+          return res.status(404).json({ message: "User Checklist not found" });
+      }
+
+      // Update only the Status field
+      existingChecklist.Status = Status;
+
+      // Save the updated checklist
+      await existingChecklist.save();
+
+      console.log("Status updated successfully");
+
+      return res.status(200).json({ message: "Status updated successfully", checklistId });
+  } catch (error) {
+      console.error("Error in updating Status", error);
+      res.status(500).json({ message: "Internal server Error" });
+  }
+};
+
+// send already inserted data from userChecklist
+// const getUserAlreadyChecklistsData = async (req, res) => {
+
+//   try {
+//     const checklist = await UserChecklistModel.findById(req.params.id);
+
+//     if (!checklist) {
+//       return res.status(404).json({ error: "Checklist not found" });
+//     }
+
+
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ error: "Internal Server Error" });
+//   }
+// };
+const getUserAlreadyChecklistsData = async (req, res) => {
+  try {
+    const checklistId = req.params.id;
+    const checklist = await UserChecklistModel.findById(checklistId);
+
+    if (!checklist) {
+      return res.status(404).json({ error: "Checklist not found" });
+    }
+
+    const {
+      userID,
+      businessID,
+      buildingID,
+      checklistTypeID,
+      sections,
+      updatedAt,
+      createdAt,
+      score,
+      dueDate,
+      AssignedUserId,
+      Status,
+    } = checklist;
+
+    const responseData = {
+      userID,
+      businessID,
+      buildingID,
+      checklistTypeID,
+      sections,
+      updatedAt,
+      createdAt,
+      score,
+      dueDate,
+      AssignedUserId,
+      Status,
+    };
+
+    res.json(responseData);
+    console.log(responseData)
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+
 // get checklist user selected with all ids and checklist structure
 const getParticularChecklist = async (req, res) => {
   try {
@@ -130,6 +256,7 @@ const getParticularChecklist = async (req, res) => {
       updatedAt: Date.now(),
       createdAt: Date.now(),
       score: 0,
+      Status: "Progress",
     });
     console.log("saving.......");
     await newchecklisttype.save();
@@ -152,30 +279,24 @@ const getUserChecklistsData = async (req, res) => {
     if (!checklist) {
       return res.status(404).json({ error: "Checklist not found" });
     }
-
     // const totalScore = checklist.sections.reduce((acc1, section) => {
     //   return (
     //     acc1 +
-    //     section.questions.reduce((acc2, question) => {
-    //       return (
-    //         acc2 +
-    //         (question.answerOptions
-    //           ? question.answerOptions.reduce((acc3, option) => {
-    //               return acc3 + (option.score || 0);
-    //             }, 0)
-    //           : 0)
-    //       );
-    //     }, 0)
+    //    (section.questions
+    //     ? section.questions.reduce((acc2, option) => {
+    //       return acc2 + (option.score || 0);
+    //      }, 0)
+    //     : 0)
     //   );
     // }, 0);
     const totalScore = checklist.sections.reduce((acc1, section) => {
       return (
         acc1 +
-       (section.questions
-        ? section.questions.reduce((acc2, option) => {
-          return acc2 + (option.score || 0);
-         }, 0)
-        : 0)
+        (section.questions
+          ? section.questions.reduce((acc2, question) => {
+            return acc2 + (question.score || 0);
+           }, 0)
+          : 0)
       );
     }, 0);
     const formattedChecklist = {
@@ -213,16 +334,18 @@ const uploadParticularChecklist = async (req, res) => {
     multipleInputValues,
     multiValues,
     checklistTotalScore,
+    Status
   } = req.body;
 
   try {
-    // console.log("Received checklistId:", checklistId);
-    // console.log("Received selected radio values:", selectedRadioValues);
-    // console.log("Received input values:", inputValues);
-    // console.log("Received Date values:", dateInputValues);
-    // console.log("Received annunciators values:", multipleInputValues);
-    // console.log("Received multiple values:", multiValues);
-    // console.log("Received Score values:", checklistTotalScore);
+    console.log("Received checklistId:", checklistId);
+    console.log("Received selected radio values:", selectedRadioValues);
+    console.log("Received input values:", inputValues);
+    console.log("Received Date values:", dateInputValues);
+    console.log("Received annunciators values:", multipleInputValues);
+    console.log("Received multiple values:", multiValues);
+    console.log("Received Score values:", checklistTotalScore);
+    console.log("Received Score values:", Status);
 
     const existingDocument = await UserChecklistModel.findOne({
       _id: checklistId,
@@ -242,35 +365,34 @@ const uploadParticularChecklist = async (req, res) => {
         if (selectedRadioValues.hasOwnProperty(questionId)) {
           // Add a new answer option with title and seqNo
           question.answerOptions =
-            selectedRadioValues[questionId].answerOptions;
-          // console.log(question.answerOptions, "385", question);
+            selectedRadioValues[questionId]?.answerOptions;
+            console.log(" 369 radio answerOptions", question.answerOptions);
+            // Update total score based on the scores of the new answer options
+  question.answerOptions.forEach((option) => {
+    if (option && option.score !== undefined) {
+      existingDocument.score += option.score;
+    }
+  });
 
-          // const newAnswerOption = {
-          //   title: selectedRadioValues[questionId].label,
-          //   type: "checkbox",
-          //   parentOption: null,
-          //   score: 0,
-          //   note: null,
-          // };
-          // console.log(newAnswerOption.title);
-          // question.answerOptions.push(newAnswerOption); // Push the new answer option to the array
         } else if (inputValues.hasOwnProperty(questionId)) {
           // answerOptionId = inputValues[questionId]._id;
-          question.answerOptions = inputValues[questionId].answerOptions;
-          // console.log(question.answerOptions, "398", question);
-          // const newInputAnswer = {
-          //   title: inputValues[questionId].title,
-          //   type: "input",
-          //   parentOption: null,
-          //   score: 0,
-          //   note: null,
-          // };
-          // console.log(newInputAnswer.title);
-
-          // question.answerOptions.push(newInputAnswer); // Push the new answer option to the array
+          question.answerOptions = inputValues[questionId]?.answerOptions;
+          console.log("380 Input answerOptions", question.answerOptions);
+            // Update total score based on the scores of the new answer options
+  question.answerOptions.forEach((option) => {
+    if (option && option.score !== undefined) {
+      existingDocument.score += option.score;
+    }
+  });
         } else if (dateInputValues.hasOwnProperty(questionId)) {
           question.answerOptions = dateInputValues[questionId].answerOptions;
-          // console.log(question.answerOptions, "411", question);
+          console.log("389 Date answerOptions", question.answerOptions);
+            // Update total score based on the scores of the new answer options
+  question.answerOptions.forEach((option) => {
+    if (option && option.score !== undefined) {
+      existingDocument.score += option.score;
+    }
+  });
         } 
         else if (multipleInputValues.hasOwnProperty(questionId)) {
           // console.log("Question ID:", questionId);
@@ -341,7 +463,9 @@ const uploadParticularChecklist = async (req, res) => {
       existingDocument.sections.forEach((section) => {
         section.questions.forEach((question) => {
           question.answerOptions.forEach((option) => {
-            totalScore += option.score;
+            if (option && option.score !== undefined) {
+              totalScore += option.score;
+            }
           });
         });
       });
@@ -361,7 +485,9 @@ const percentage = (totalScore / checklistTotalScore) * 100;
 console.log("Checklist Total Score from Frontend:", checklistTotalScore);
 console.log("Percentage:", percentage);
 
+
 existingDocument.score = percentage;
+existingDocument.Status = Status;
 
     // Save the updated document
     const savedDocument = await existingDocument.save();
@@ -381,6 +507,9 @@ module.exports = {
   getParticularChecklist,
   uploadParticularChecklist,
   getUserChecklistsData,
+  updateUserChecklistStatus,
+  getUserAlreadyChecklistsData,
+  updateUserAlreadyChecklistsData,
 };
 
 

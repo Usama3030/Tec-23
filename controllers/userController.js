@@ -6,6 +6,8 @@ const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
 const crypto = require("crypto");
+const _ = require("lodash");
+
 const { sendVerifyEmail } = require("./emailverify");
 
 // Generate a random secret key for JWT signing
@@ -93,67 +95,38 @@ exports.registerUser = async (req, res) => {
   }
 };
 
-
 // login api
+
 exports.loginUser = async (req, res) => {
   try {
-    const { email } = req.body;
+    const { email, password } = req.body;
 
     const user = await User.findOne({ email });
     if (!user) {
       return res.status(404).json({ error: "User not found" });
     }
 
-    // For testing purposes, bypass password validation
-    if (!user.isValidPassword) {
-      const loginToken = jwt.sign({ user_id: user._id }, tokenSecretKey);
-      let roles = [];
-
-      // Iterate through the businesses array and accumulate roles
-      user.businesses.forEach((business) => {
-        roles = roles.concat(business.roles);
-      });
-
-      const userDetails = {
-        _id: user._id,
-        name: user.name,
-        email: user.email,
-        role: roles,
-        token: loginToken,
-      };
-      // console.log(userDetails);
-      return res
-        .status(200)
-        .json({ message: "Login successful", user: userDetails });
-        
-    } else {
-      // Continue with password validation for non-testing scenarios
-      const isPasswordValid = await bcrypt.compare(
-        req.body.password,
-        user.password
-      );
-
-    //      // Check if the user is verified
-    // if (!user.isVerified) {
-    //   return res.status(401).json({ error: "User is not verified" });
-    // }
-
-      if (!isPasswordValid) {
-        return res.status(401).json({ error: "Invalid password" });
-      }
-
-      const loginToken = jwt.sign({ user_id: user._id }, tokenSecretKey);
-
-      const userDetails = {
-        _id: user._id,
-        name: user.name,
-        email: user.email,
-        role: _.flatten(user.businesses.map(business => business.roles)),
-        token: loginToken,
-      };
-      
-      res.status(200).json({ message: "Login successful", user: userDetails });
+    if (!user.isVerified) {
+      return res.status(401).json({ error: "User is not verified" });
     }
+
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+
+    if (!isPasswordValid) {
+      return res.status(401).json({ error: "Invalid password" });
+    }
+
+    const loginToken = jwt.sign({ user_id: user._id }, tokenSecretKey);
+
+    const userDetails = {
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      role: _.flatten(user.businesses.map((business) => business.roles)),
+      token: loginToken,
+    };
+
+    res.status(200).json({ message: "Login successful", user: userDetails });
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
