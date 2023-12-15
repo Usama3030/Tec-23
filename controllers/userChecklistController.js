@@ -40,7 +40,6 @@
 //   }
 // };
 
-
 // // create checklist page according to business, building, checklistType, and User
 // const compareUserChecklists = async (req, res) => {
 //   //const { name } = req.body;
@@ -271,63 +270,61 @@
 //         } else if (dateInputValues.hasOwnProperty(questionId)) {
 //           question.answerOptions = dateInputValues[questionId].answerOptions;
 //           // console.log(question.answerOptions, "411", question);
-//         } 
+//         }
 //         else if (multipleInputValues.hasOwnProperty(questionId)) {
 //           // console.log("Question ID:", questionId);
 //           // console.log("Received Multiple Input Values:", multipleInputValues[questionId]);
-        
+
 //           const receivedData = multipleInputValues[questionId];
 //           // console.log("receivedData", receivedData);
-        
+
 //           if (receivedData) {
 //             // console.log("inside if statement.");
-            
+
 //               question.answerOptions = [];
-            
-        
-//             // Iterate over each received item 
+
+//             // Iterate over each received item
 //             receivedData.forEach((dataItem) => {
-              
+
 //               const detailObject = {
 //                 detail: dataItem,
 //               };
-        
+
 //               question.answerOptions.push(detailObject);
 //             });
-        
+
 //             console.log(" inside detail of answerOptions", question.answerOptions);
 //           } else {
 //             console.log("Received data Invalid properties.");
 //           }
 //         }
-       
+
 //          else if (multiValues.hasOwnProperty(questionId)) {
 //           // console.log("Question ID:", questionId);
 //           // console.log("Received Multiple Values:", multiValues[questionId]);
-        
+
 //           const receivedData = multiValues[questionId];
 //           // console.log("receivedData", receivedData);
-        
+
 //           if (receivedData) {
 //             // console.log("inside if statement.");
-        
+
 //             // Initialize the answerOptions is empty.
-           
+
 //               question.answerOptions = [];
-            
-        
+
 //             // Create an object detail:
 //             const detailObject = {
 //               detail: receivedData[questionId],
 //             };
-        
+
 //             question.answerOptions.push(detailObject);
-        
+
 //             console.log("Inside MultiValue saving", question.answerOptions);
 //           } else {
 //             console.log("Received data Invalid properties.");
 //           }
-//         }      
+//         }
 //          else {
 //           question.answerOptions = [];
 //           // console.log("else statement");
@@ -337,7 +334,7 @@
 
 //     const calculateTotalScore = (existingDocument) => {
 //       let totalScore = 0;
-    
+
 //       existingDocument.sections.forEach((section) => {
 //         section.questions.forEach((question) => {
 //           question.answerOptions.forEach((option) => {
@@ -345,15 +342,14 @@
 //           });
 //         });
 //       });
-    
+
 //       return totalScore;
 //     };
-    
-   
+
 //     const totalScore = calculateTotalScore(existingDocument);
-    
+
 //     console.log("Total Score:", totalScore);
-    
+
 //     // const checklistTotalScoreFromFrontend = req.body.checklistTotalScore;
 //     // Calculate the %
 // const percentage = (totalScore / checklistTotalScore) * 100;
@@ -382,8 +378,6 @@
 //   uploadParticularChecklist,
 //   getUserChecklistsData,
 // };
-
-
 
 const UserChecklistModel = require("../models/userChecklist");
 const BusinessModel = require("../models/business");
@@ -420,7 +414,9 @@ const getUserChecklists = async (req, res) => {
       .populate("userID", "name")
       .populate("AssignedUserId", "name")
       .populate("checklistTypeID", "type _id rangeConfigrations")
-      .select("businessID buildingID userID AssignedUserId createdAt updatedAt score Status dueDate checklistTypeID ");
+      .select(
+        "businessID buildingID userID AssignedUserId createdAt updatedAt score Status dueDate checklistTypeID "
+      );
 
     res.json(userChecklists);
     // console.log(userChecklists);
@@ -430,37 +426,37 @@ const getUserChecklists = async (req, res) => {
   }
 };
 
-// update the Status value in list page 
+// update the Status value in list page
 const updateUserChecklistStatus = async (req, res) => {
   try {
-      const { Status } = req.body;
-      const { checklistId } = req.params;
-      console.log("Updating User Checklist Status with ID:", checklistId);
-      console.log("Updated Status:", Status);
+    const { Status } = req.body;
+    const { checklistId } = req.params;
+    console.log("Updating User Checklist Status with ID:", checklistId);
+    console.log("Updated Status:", Status);
 
-      // Check if the checklistId is valid
-      const existingChecklist = await UserChecklistModel.findById(checklistId);
+    // Check if the checklistId is valid
+    const existingChecklist = await UserChecklistModel.findById(checklistId);
 
-      if (!existingChecklist) {
-          return res.status(404).json({ message: "User Checklist not found" });
-      }
+    if (!existingChecklist) {
+      return res.status(404).json({ message: "User Checklist not found" });
+    }
 
-      // Update only the Status field
-      existingChecklist.Status = Status;
+    // Update only the Status field
+    existingChecklist.Status = Status;
 
-      // Save the updated checklist
-      await existingChecklist.save();
+    // Save the updated checklist
+    await existingChecklist.save();
 
-      console.log("Status updated successfully");
+    console.log("Status updated successfully");
 
-      return res.status(200).json({ message: "Status updated successfully", checklistId });
+    return res
+      .status(200)
+      .json({ message: "Status updated successfully", checklistId });
   } catch (error) {
-      console.error("Error in updating Status", error);
-      res.status(500).json({ message: "Internal server Error" });
+    console.error("Error in updating Status", error);
+    res.status(500).json({ message: "Internal server Error" });
   }
 };
-
-
 
 // create checklist page according to business, building, checklistType, and User
 const compareUserChecklists = async (req, res) => {
@@ -519,33 +515,35 @@ const compareUserChecklists = async (req, res) => {
   }
 };
 
-// update the Status value in list page 
+// update the Status value in list page
 const updateUserAlreadyChecklistsData = async (req, res) => {
   try {
-      const { Status } = req.body;
-      const { checklistId } = req.params;
-      console.log("Updating User Checklist Status with ID:", checklistId);
-      console.log("Updated Status:", Status);
+    const { Status } = req.body;
+    const { checklistId } = req.params;
+    console.log("Updating User Checklist Status with ID:", checklistId);
+    console.log("Updated Status:", Status);
 
-      // Check if the checklistId is valid
-      const existingChecklist = await UserChecklistModel.findById(checklistId);
+    // Check if the checklistId is valid
+    const existingChecklist = await UserChecklistModel.findById(checklistId);
 
-      if (!existingChecklist) {
-          return res.status(404).json({ message: "User Checklist not found" });
-      }
+    if (!existingChecklist) {
+      return res.status(404).json({ message: "User Checklist not found" });
+    }
 
-      // Update only the Status field
-      existingChecklist.Status = Status;
+    // Update only the Status field
+    existingChecklist.Status = Status;
 
-      // Save the updated checklist
-      await existingChecklist.save();
+    // Save the updated checklist
+    await existingChecklist.save();
 
-      console.log("Status updated successfully");
+    console.log("Status updated successfully");
 
-      return res.status(200).json({ message: "Status updated successfully", checklistId });
+    return res
+      .status(200)
+      .json({ message: "Status updated successfully", checklistId });
   } catch (error) {
-      console.error("Error in updating Status", error);
-      res.status(500).json({ message: "Internal server Error" });
+    console.error("Error in updating Status", error);
+    res.status(500).json({ message: "Internal server Error" });
   }
 };
 
@@ -558,7 +556,6 @@ const updateUserAlreadyChecklistsData = async (req, res) => {
 //     if (!checklist) {
 //       return res.status(404).json({ error: "Checklist not found" });
 //     }
-
 
 //   } catch (error) {
 //     console.error(error);
@@ -603,13 +600,12 @@ const getUserAlreadyChecklistsData = async (req, res) => {
     };
 
     res.json(responseData);
-    console.log(responseData)
+    console.log(responseData);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
-
 
 // get checklist user selected with all ids and checklist structure
 const getParticularChecklist = async (req, res) => {
@@ -681,8 +677,8 @@ const getUserChecklistsData = async (req, res) => {
         acc1 +
         (section.questions
           ? section.questions.reduce((acc2, question) => {
-            return acc2 + (question.score || 0);
-           }, 0)
+              return acc2 + (question.score || 0);
+            }, 0)
           : 0)
       );
     }, 0);
@@ -721,7 +717,7 @@ const uploadParticularChecklist = async (req, res) => {
     multipleInputValues,
     multiValues,
     checklistTotalScore,
-    Status
+    Status,
   } = req.body;
 
   try {
@@ -781,64 +777,60 @@ const uploadParticularChecklist = async (req, res) => {
         } else if (dateInputValues.hasOwnProperty(questionId)) {
           question.answerOptions = dateInputValues[questionId].answerOptions;
           // console.log(question.answerOptions, "411", question);
-        } 
-        else if (multipleInputValues.hasOwnProperty(questionId)) {
+        } else if (multipleInputValues.hasOwnProperty(questionId)) {
           // console.log("Question ID:", questionId);
           // console.log("Received Multiple Input Values:", multipleInputValues[questionId]);
-        
+
           const receivedData = multipleInputValues[questionId];
           // console.log("receivedData", receivedData);
-        
+
           if (receivedData) {
             // console.log("inside if statement.");
-            
-              question.answerOptions = [];
-            
-        
-            // Iterate over each received item 
+
+            question.answerOptions = [];
+
+            // Iterate over each received item
             receivedData.forEach((dataItem) => {
-              
               const detailObject = {
                 detail: dataItem,
               };
-        
+
               question.answerOptions.push(detailObject);
             });
-        
-            console.log(" inside detail of answerOptions", question.answerOptions);
+
+            console.log(
+              " inside detail of answerOptions",
+              question.answerOptions
+            );
           } else {
             console.log("Received data Invalid properties.");
           }
-        }
-       
-         else if (multiValues.hasOwnProperty(questionId)) {
+        } else if (multiValues.hasOwnProperty(questionId)) {
           // console.log("Question ID:", questionId);
           // console.log("Received Multiple Values:", multiValues[questionId]);
-        
+
           const receivedData = multiValues[questionId];
           // console.log("receivedData", receivedData);
-        
+
           if (receivedData) {
             // console.log("inside if statement.");
-        
+
             // Initialize the answerOptions is empty.
-           
-              question.answerOptions = [];
-            
-        
+
+            question.answerOptions = [];
+
             // Create an object detail:
             const detailObject = {
               detail: receivedData[questionId],
             };
-        
+
             question.answerOptions.push(detailObject);
-        
+
             console.log("Inside MultiValue saving", question.answerOptions);
           } else {
             console.log("Received data Invalid properties.");
           }
-        }      
-         else {
+        } else {
           question.answerOptions = [];
           // console.log("else statement");
         }
@@ -847,7 +839,7 @@ const uploadParticularChecklist = async (req, res) => {
 
     const calculateTotalScore = (existingDocument) => {
       let totalScore = 0;
-    
+
       existingDocument.sections.forEach((section) => {
         section.questions.forEach((question) => {
           question.answerOptions.forEach((option) => {
@@ -857,25 +849,23 @@ const uploadParticularChecklist = async (req, res) => {
           });
         });
       });
-    
+
       return totalScore;
     };
-    
-   
+
     const totalScore = calculateTotalScore(existingDocument);
-    
+
     console.log("Total Score:", totalScore);
-    
+
     // const checklistTotalScoreFromFrontend = req.body.checklistTotalScore;
     // Calculate the %
-const percentage = (totalScore / checklistTotalScore) * 100;
+    const percentage = (totalScore / checklistTotalScore) * 100;
 
-console.log("Checklist Total Score from Frontend:", checklistTotalScore);
-console.log("Percentage:", percentage);
+    console.log("Checklist Total Score from Frontend:", checklistTotalScore);
+    console.log("Percentage:", percentage);
 
-
-existingDocument.score = percentage;
-existingDocument.Status = Status;
+    existingDocument.score = percentage;
+    existingDocument.Status = Status;
 
     // Save the updated document
     const savedDocument = await existingDocument.save();
@@ -899,6 +889,3 @@ module.exports = {
   getUserAlreadyChecklistsData,
   updateUserAlreadyChecklistsData,
 };
-
-
-

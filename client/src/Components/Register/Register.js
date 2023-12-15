@@ -81,10 +81,13 @@ const Register = () => {
     e.preventDefault();
     setFormErrors(validateForm(user));
     setIsSubmit(true);
-  
+
     if (Object.keys(formErrors).length === 0) {
       try {
-        const response = await axios.post(`${process.env.REACT_APP_NODE_API}/api/signup`, user);
+        const response = await axios.post(
+          `${process.env.REACT_APP_NODE_API}/api/signup`,
+          user
+        );
         if (response.status === 201) {
           alert(response.data.message);
           navigate("/login", { replace: true });
@@ -102,7 +105,7 @@ const Register = () => {
       }
     }
   };
-  
+
   return (
     <>
       <div className={registerstyle.register}>

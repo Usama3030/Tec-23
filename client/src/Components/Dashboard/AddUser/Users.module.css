@@ -49,82 +49,75 @@
     padding: 0px 1rem;
 } */
 
-
 .user {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    padding: 20px;
-    background-color: #f1f1f1;
-    width: 80%;
-    margin: 0 auto;
-    border: 1px solid #ccc;
-    border-radius: 0.5rem;
-    overflow: auto;
-    @media (max-width: 767px) {
-      max-width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 20px;
+  background-color: #f1f1f1;
+  width: 80%;
+  margin: 0 auto;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  overflow: auto;
+  @media (max-width: 767px) {
+    max-width: 90%;
   }
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.user_body {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+  margin: 10px 0;
+}
+
+.headings {
+  width: 100%;
+  margin-bottom: 0.3rem;
+  margin-top: 0.1rem;
+}
+
+.option {
+  flex-basis: calc(40% - 10px);
+  display: flex;
+  flex-direction: column;
+  margin: 5px 0;
+  @media (max-width: 767px) {
+    flex-basis: 100%;
   }
-  
-  h1 {
-    text-align: center;
-    margin-bottom: 10px;
-  }
-  
-  
-  .user_body {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    width: 100%;
-    margin: 10px 0;
-  }
-  
-  .headings {
-    width: 100%;
-    margin-bottom: 0.3rem;
-    margin-top: 0.1rem
-  }
-  
-  .option {
-    flex-basis: calc(40% - 10px);
-    display: flex;
-    flex-direction: column;
-    margin: 5px 0;
-    @media (max-width: 767px) {
-       flex-basis: 100%;
-    }
-  }
-  
-  
-  label {
-    font-weight: bold;
-    margin-bottom: 5px;
-  }
-  
-  
-  input {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    width: 90%;
-    border-radius: 0.5rem;
-  }
-  
-  
-  .error {
-    color: red;
-  }
-  
-  
-  .button_common {
-    margin: 10px auto;
-    padding: 10px 20px;
-    background-color: #007BFF;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  width: 90%;
+  border-radius: 0.5rem;
+}
+
+.error {
+  color: red;
+}
+
+.button_common {
+  margin: 10px auto;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}

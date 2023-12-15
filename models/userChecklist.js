@@ -48,12 +48,12 @@ const userChecklistSchema = new Schema({
   updatedAt: { type: Date, default: Date.now },
   createdAt: { type: Date, default: Date.now },
   score: { type: Number },
-  dueDate: {type: Date},
+  dueDate: { type: Date },
   AssignedUserId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
   },
-  Status: {type: String},
+  Status: { type: String },
 });
 
 const UserChecklistModel = mongoose.model("userChecklist", userChecklistSchema);

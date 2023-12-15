@@ -1,45 +1,41 @@
-
- .home{
-    width: 90%;
-    text-align: center; 
-    margin: 0 auto;
-    @media (max-width: 767px) {
-        width: 100%;
-        margin: 0;
-        padding: 0;
-        overflow-x: hidden;
-    }
- }
-
- 
- .header-container {
-    background-color: #244175;
-    padding: 10px;
-    border-radius: 10px;
-    height: 20%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+.home {
+  width: 90%;
+  text-align: center;
+  margin: 0 auto;
+  @media (max-width: 767px) {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
   }
-  
-  .company-name {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: white;
-  }
-  
-  .details {
-    font-size: 1.1rem;
-    color: white;
-  }
-  .details2 {
-    font-size: 1.1rem;
-    color: white;
-    padding-bottom: 20px;
-  }
+}
 
+.header-container {
+  background-color: #244175;
+  padding: 10px;
+  border-radius: 10px;
+  height: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 
+.company-name {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+}
+
+.details {
+  font-size: 1.1rem;
+  color: white;
+}
+.details2 {
+  font-size: 1.1rem;
+  color: white;
+  padding-bottom: 20px;
+}
 
 .form-header {
   margin-bottom: 10px;
@@ -55,13 +51,12 @@
   text-align: left;
 }
 
-
 .form-checkboxes {
   display: flex;
   flex-wrap: wrap;
   margin-bottom: 10px;
   @media (max-width: 767px) {
-    margin-bottom: 10px; 
+    margin-bottom: 10px;
     /* justify-content: center; */
   }
 }
@@ -69,31 +64,30 @@
 input[type="radio"] {
   visibility: hidden;
   width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    opacity: 0;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
 }
 
 .form-input {
   display: inline-block;
-    flex: 0 0 20%;
-    box-sizing: border-box;
-    margin-left: 2%;
-    margin-right: 2%;
-    margin-bottom: 15px;
+  flex: 0 0 20%;
+  box-sizing: border-box;
+  margin-left: 2%;
+  margin-right: 2%;
+  margin-bottom: 15px;
+  text-align: center;
+  justify-content: space-around;
+  @media (max-width: 767px) {
+    flex: 0 0 calc(40% - 10px);
+    margin-left: 20px;
+    margin-bottom: 10px;
     text-align: center;
     justify-content: space-around;
-    @media (max-width: 767px) {
-      flex: 0 0 calc(40% - 10px);
-      margin-left: 20px;
-      margin-bottom: 10px;
-      text-align: center;
-      justify-content: space-around;
-    }
   }
-
+}
 
 .form-input label {
   display: block;
@@ -105,25 +99,22 @@ input[type="radio"] {
   transition: background-color 0.3s, box-shadow 0.3s;
   @media (max-width: 767px) {
     flex-direction: row;
-    flex-basis: calc(40% - 10px); /* Two checkboxes in a row with a little spacing */
+    flex-basis: calc(
+      40% - 10px
+    ); /* Two checkboxes in a row with a little spacing */
     margin-right: 10px; /* Add some spacing between checkboxes */
     margin-bottom: 10px;
     font-size: 0.8rem;
-  /* height: 50px; */
-  height: 40px;
+    /* height: 50px; */
+    height: 40px;
     width: 80px;
   }
 }
-
 
 .form-input label:hover {
   background-color: #e0e0e0;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
-
-
-
-
 
 .form-input input {
   width: 100%;
@@ -147,19 +138,17 @@ input[type="radio"] {
   flex-direction: row-reverse;
   justify-content: space-between;
   padding: 20px;
-  
 }
 
 /* Styles for the button wrapper */
 .button_wrapper {
   position: relative;
-  margin-bottom: 5%; 
- /*margin-top: 20px; Add margin to push the button below the content */
+  margin-bottom: 5%;
+  /*margin-top: 20px; Add margin to push the button below the content */
   display: flex;
   justify-content: space-between;
   padding: 0 20px; /* Add padding for spacing between buttons and edges */
 }
-
 
 /* Styles for the common button class */
 .button_common {
@@ -177,7 +166,6 @@ input[type="radio"] {
 .button_common:hover {
   background-color: #0056b3;
 }
-
 
 .form-selected-item {
   width: 100%;
@@ -200,7 +188,6 @@ input[type="radio"] {
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
 }
 
-
 .change-button {
   padding: 5px 15px;
   background-color: #007bff;
@@ -215,8 +202,6 @@ input[type="radio"] {
 .change-button:hover {
   background-color: #0056b3;
 }
-
-
 
 /* 
 .property-info-column {
@@ -280,8 +265,6 @@ input[type="radio"] {
   display: table;
   clear: both;
 } */
-
-
 
 table {
   width: 100%;
@@ -353,11 +336,15 @@ button:hover {
 }
 
 @keyframes spin {
-  to {transform: rotate(360deg);}
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @-webkit-keyframes spin {
-  to {-webkit-transform: rotate(360deg);}
+  to {
+    -webkit-transform: rotate(360deg);
+  }
 }
 
 .loading-text {
@@ -375,9 +362,9 @@ button:hover {
   flex: 1 0 calc(40% - 10px); /* This will make two inputs fit in one row, considering 10px as the gap between two inputs */
   margin-bottom: 20px; /* Add some space between rows */
   position: relative;
-  padding: 0 5px; 
+  padding: 0 5px;
   @media (max-width: 767px) {
-    flex: 0 0 90%; 
+    flex: 0 0 90%;
   }
 }
 
@@ -442,7 +429,7 @@ button:hover {
 }
 
 .column-body-Table button {
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
   padding: 10px 24px;
   margin: 8px 0;
@@ -461,7 +448,6 @@ button:hover {
   border: 1px solid #ccc;
 }
 
-
 .add-button {
   padding: 5px 15px;
   background-color: #007bff;
@@ -472,22 +458,18 @@ button:hover {
   transition: background-color 0.3s ease;
   align-items: right;
   height: 2rem;
-  width: auto
+  width: auto;
 }
 
 .add-button:hover {
   background-color: #0056b3;
 }
 
-
 .textInput-container {
-
   display: flex;
 
   @media (max-width: 767px) {
     flex-wrap: wrap;
-     /* display on nextline */
+    /* display on nextline */
   }
-
-
 }

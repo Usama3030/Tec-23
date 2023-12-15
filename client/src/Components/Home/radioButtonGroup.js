@@ -1,9 +1,14 @@
-
 import React, { useState, useEffect } from "react";
 import homestyles from "./Home.module.css";
 import { RadioGroup } from "./RadioGroup";
 
-export function RadioButtonGroup({ radioButtonOptions, selectedValue, onRadioButtonChange, onInputDetailChange, questionId }) {
+export function RadioButtonGroup({
+  radioButtonOptions,
+  selectedValue,
+  onRadioButtonChange,
+  onInputDetailChange,
+  questionId,
+}) {
   const [selected, setSelected] = useState({});
   const [typeCollapsed, setTypeCollapsed] = useState(false);
   //start of status and type
@@ -16,7 +21,12 @@ export function RadioButtonGroup({ radioButtonOptions, selectedValue, onRadioBut
     <div className={homestyles["form-checkboxes"]}>
       {typeCollapsed ? (
         <div className={homestyles["form-selected-item"]}>
-          <p style={{ fontWeight: 'normal' }} className={homestyles["selected-type"]}>{selected?.title}</p>
+          <p
+            style={{ fontWeight: "normal" }}
+            className={homestyles["selected-type"]}
+          >
+            {selected?.title}
+          </p>
           <button
             className={homestyles["change-button"]}
             onClick={() => setTypeCollapsed(false)}

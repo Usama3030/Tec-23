@@ -27,13 +27,13 @@ function ValidateForm({ userName, userId }) {
   const [buildings, setBuildings] = useState([]);
   const [checklistTypes, setChecklistTypes] = useState([]);
   const [newChecklistId, setNewChecklistId] = useState(null);
-    //prevent login
-    useEffect(() => {
-      const token = localStorage.getItem("token");
-      if (!token) {
-        navigate("/login");
-      }
-    }, []);
+  //prevent login
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      navigate("/login");
+    }
+  }, []);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -133,7 +133,7 @@ function ValidateForm({ userName, userId }) {
             placeholder=""
             value={formData.name}
             onChange={handleInputChange}
-             disabled
+            disabled
           />
           <p className={basestyle.error}>{formErrors.name}</p>
         </div>

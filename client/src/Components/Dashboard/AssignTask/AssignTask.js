@@ -56,7 +56,13 @@ function AssignTask() {
       // Set formErrors state to display errors
       setFormErrors(errors);
 
-      if (!formData.businessName || !formData.buildingName || !formData.assignTo || !formData.dueDate || !formData.type) {
+      if (
+        !formData.businessName ||
+        !formData.buildingName ||
+        !formData.assignTo ||
+        !formData.dueDate ||
+        !formData.type
+      ) {
         // Handle case when required fields are empty
         console.log("Required fields are empty.");
       } else {
@@ -74,13 +80,13 @@ function AssignTask() {
             console.log("Response data:", response.data);
             console.log("Data added successfully");
             alert(response.data.message);
-          navigate("/dashboard", { replace: true });
+            navigate("/dashboard", { replace: true });
             console.log(response.data.checklistId);
           })
           .catch((error) => {
             console.error("Error", error);
           });
-           
+
         console.log("Selected User Name:", formData.assignTo);
         console.log("Selected Checklist Type:", formData.type);
         console.log("Selected Business:", formData.buildingName);
@@ -110,9 +116,9 @@ function AssignTask() {
 
   return (
     <div className={validatestyle.register}>
-    <h3>Assign Task to User</h3>
-    <div>
-    <div>
+      <h3>Assign Task to User</h3>
+      <div>
+        <div>
           <label htmlFor="name">Admin:</label>
           <input
             type="text"
@@ -120,43 +126,43 @@ function AssignTask() {
             placeholder=""
             value={formData.name}
             onChange={handleInputChange}
-             disabled
+            disabled
           />
           <p className={validatestyle.error}>{formErrors.name}</p>
         </div>
-      <div>
-        <label htmlFor="userName">User's Name:</label>
-        <select
-          name="assignTo"
-          value={formData.assignTo}
-          onChange={handleInputChange}
-        >
-          <option value="">Select a User</option>
-          {assignTos.map((assign, index) => (
-            <option key={index} value={assign._id}>
-              {assign.name}
-            </option>
-          ))}
-        </select>
-        <p className={validatestyle.error}>{formErrors.assignTo}</p>
-      </div>
-      <div>
-        <label htmlFor="type">Checklist Type:</label>
-        <select
-          name="type"
-          value={formData.type}
-          onChange={handleInputChange}
-        >
-          <option value="">Select a Checklist Type</option>
-          {checklistTypes.map((checklistType, index) => (
-            <option key={index} value={checklistType._id}>
-              {checklistType.type}
-            </option>
-          ))}
-        </select>
-        <p className={validatestyle.error}>{formErrors.type}</p>
-      </div>
-      <div>
+        <div>
+          <label htmlFor="userName">User's Name:</label>
+          <select
+            name="assignTo"
+            value={formData.assignTo}
+            onChange={handleInputChange}
+          >
+            <option value="">Select a User</option>
+            {assignTos.map((assign, index) => (
+              <option key={index} value={assign._id}>
+                {assign.name}
+              </option>
+            ))}
+          </select>
+          <p className={validatestyle.error}>{formErrors.assignTo}</p>
+        </div>
+        <div>
+          <label htmlFor="type">Checklist Type:</label>
+          <select
+            name="type"
+            value={formData.type}
+            onChange={handleInputChange}
+          >
+            <option value="">Select a Checklist Type</option>
+            {checklistTypes.map((checklistType, index) => (
+              <option key={index} value={checklistType._id}>
+                {checklistType.type}
+              </option>
+            ))}
+          </select>
+          <p className={validatestyle.error}>{formErrors.type}</p>
+        </div>
+        <div>
           <label htmlFor="businessName">Business:</label>
           <select
             name="businessName"
@@ -188,25 +194,28 @@ function AssignTask() {
           </select>
           <p className={validatestyle.error}>{formErrors.buildingName}</p>
         </div>
-      <div>
-        <label htmlFor="dueDate">Due Date:</label>
-        <input
-          type="date"
-          name="dueDate"
-          placeholder=""
-          value={formData.dueDate}
-          onChange={handleInputChange}
-        />
-        <p className={validatestyle.error}>{formErrors.dueDate}</p>
-      </div>
-      <div>
-        <button className={validatestyle.button_common} onClick={checkSchemas}>
-          Register Task
-        </button>
+        <div>
+          <label htmlFor="dueDate">Due Date:</label>
+          <input
+            type="date"
+            name="dueDate"
+            placeholder=""
+            value={formData.dueDate}
+            onChange={handleInputChange}
+          />
+          <p className={validatestyle.error}>{formErrors.dueDate}</p>
+        </div>
+        <div>
+          <button
+            className={validatestyle.button_common}
+            onClick={checkSchemas}
+          >
+            Register Task
+          </button>
+        </div>
       </div>
     </div>
-  </div>
-);
+  );
 }
 
 export default AssignTask;

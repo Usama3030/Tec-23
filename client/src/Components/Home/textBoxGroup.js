@@ -1,5 +1,3 @@
-
-
 import React, { useState, useEffect } from "react";
 import homestyles from "./Home.module.css";
 import { TextInputRow } from "./RadioGroup";
@@ -42,7 +40,9 @@ export function TextBoxGroup({ textBoxOptions, onInputChange, questionId }) {
             id={textbox._id}
             // score={textbox.score || 0}
             value={inputValues[textbox._id] || ""}
-            onChange={(e)=>{handleInputChange(e, textbox.score)}}
+            onChange={(e) => {
+              handleInputChange(e, textbox.score);
+            }}
             placeholder={textbox.title}
           />
         </div>
@@ -50,4 +50,3 @@ export function TextBoxGroup({ textBoxOptions, onInputChange, questionId }) {
     </div>
   );
 }
-

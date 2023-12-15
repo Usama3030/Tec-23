@@ -1,88 +1,87 @@
 .list {
-    height: 100vh;
-    width: 90%;
-    text-align: center; 
-    margin: 0 auto;
-    /* background-color: #EEEEEC; */
-    @media (max-width: 768px){
-        width: 100%;
-        margin: 0;
-        padding: 0;
-        overflow-x: hidden;
-    }
+  height: 100vh;
+  width: 90%;
+  text-align: center;
+  margin: 0 auto;
+  /* background-color: #EEEEEC; */
+  @media (max-width: 768px) {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
   }
+}
 
-  .header-container {
-    background-color: #244175;
-    padding: 10px;
-    border-radius: 10px;
-    height: 10%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-  }
-  
-  .company-name {
-    font-size: 2rem;
-    font-weight: bold;
-    color: white;
-    margin-left: 10px;
-    @media (max-width: 768px){
-        font-size: 1.5rem;
-    }
-  }
-  .button_header {
-    margin-left: 10px;
-    background-color: #870000;
-  }
-  .button_header:hover {
-    background-color: red;
-  }
+.header-container {
+  background-color: #244175;
+  padding: 10px;
+  border-radius: 10px;
+  height: 10%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
 
-  .form-header {
+.company-name {
+  font-size: 2rem;
+  font-weight: bold;
+  color: white;
+  margin-left: 10px;
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
+  }
+}
+.button_header {
+  margin-left: 10px;
+  background-color: #870000;
+}
+.button_header:hover {
+  background-color: red;
+}
+
+.form-header {
+  margin-bottom: 10px;
+  margin-left: 40px;
+  margin-top: 40px;
+  font-size: 1.8rem;
+  font-weight: bold;
+  text-align: left;
+  @media (max-width: 768px) {
+    margin-left: 20px;
+    margin-top: 20px;
+    font-size: 1.3rem;
+  }
+}
+.form-header p {
+  margin-bottom: 10px;
+  font-size: 1.8rem;
+  font-weight: bold;
+  text-align: left;
+  margin-left: 5%;
+  @media (max-width: 768px) {
+    font-size: 1.3rem;
+  }
+}
+
+.body-content {
+  margin: 10px;
+  background-color: #eff6fe;
+  @media (max-width: 768px) {
+    margin: auto;
+  }
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  bottom: 10px;
+  right: 0;
+  @media (max-width: 768px) {
     margin-bottom: 10px;
-    margin-left: 40px;
-    margin-top: 40px;
-    font-size: 1.8rem;
-    font-weight: bold;
-    text-align: left;
-    @media (max-width: 768px){
-        margin-left: 20px;
-        margin-top: 20px;
-        font-size: 1.3rem;
-    }
   }
-  .form-header p {
-    margin-bottom: 10px;
-    font-size: 1.8rem;
-    font-weight: bold;
-    text-align: left;
-    margin-left: 5%;
-    @media (max-width: 768px){
-        font-size: 1.3rem;
-    }
-  }
-
-  .body-content {
-   margin: 10px;
-   background-color: #eff6fe;
-    @media (max-width: 768px){
-        margin: auto;
-    }
-  }
-
-
-  .pagination {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    bottom: 10px;
-    right: 0;
-    @media (max-width: 768px) {
-      margin-bottom: 10px;
-  }
-  }
+}
 .tableContainer {
   border-radius: 10px;
   width: 90%;
@@ -106,20 +105,20 @@
   align-items: center;
   height: 7rem;
   width: 12rem;
-  background-color: #3498db; 
+  background-color: #3498db;
   border-radius: 1rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
-  transition: background-color 0.3s; 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s;
   cursor: pointer;
   margin: 1rem;
 }
 
 .card_navigation:hover {
-  background-color: #2980b9; 
+  background-color: #2980b9;
 }
 
 .button_navigation {
-  color: #fff; 
+  color: #fff;
   background-color: red;
   font-size: 1rem;
   text-align: center;
@@ -139,7 +138,7 @@
 @media (max-width: 768px) {
   /* Media query for responsiveness on smaller screens */
   .card_navigation {
-    width: 40%; 
-    border-radius: 0.5rem; 
+    width: 40%;
+    border-radius: 0.5rem;
   }
 }

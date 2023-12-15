@@ -17,8 +17,8 @@ const AddUser = () => {
     roles: "",
   });
 
-   //prevent login
-   useEffect(() => {
+  //prevent login
+  useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
       navigate("/login");
@@ -69,10 +69,13 @@ const AddUser = () => {
     e.preventDefault();
     setFormErrors(validateForm(user));
     setIsSubmit(true);
-  
+
     if (Object.keys(formErrors).length === 0) {
       try {
-        const response = await axios.post(`${process.env.REACT_APP_NODE_API}/api/signup`, user);
+        const response = await axios.post(
+          `${process.env.REACT_APP_NODE_API}/api/signup`,
+          user
+        );
         if (response.status === 201) {
           alert(response.data.message);
           navigate("/dashboard", { replace: true });
@@ -90,90 +93,93 @@ const AddUser = () => {
       }
     }
   };
-  
+
   return (
     <>
       <div className={userstyle.user}>
         <form>
           <h1>Create New User</h1>
           <div className={userstyle.user_body}>
-          <div className={userstyle.option}>
-            <label htmlFor="name">Name</label>
-          <input
-            type="text"
-            name="name"
-            id="name"
-            placeholder="Name"
-            onChange={changeHandler}
-            value={user.name}
-          />
-          <p className={userstyle.error}>{formErrors.name}</p>
-          </div>
-          <div className={userstyle.option}>
-            <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            name="email"
-            id="email"
-            placeholder="@gmail.com"
-            onChange={changeHandler}
-            value={user.email}
-          />
-          <p className={userstyle.error}>{formErrors.email}</p>
-          </div>
-          <div className={userstyle.option}>
-            <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            name="password"
-            id="password"
-            placeholder="****"
-            onChange={changeHandler}
-            value={user.password}
-          />
-          <p className={userstyle.error}>{formErrors.password}</p>
-          </div>
-          <div className={userstyle.option}>
-            <label htmlFor="cpassword">Confirm password</label>
-          <input
-            type="password"
-            name="cpassword"
-            id="cpassword"
-            placeholder="****"
-            onChange={changeHandler}
-            value={user.cpassword}
-          />
-          <p className={userstyle.error}>{formErrors.cpassword}</p>
-          </div>
-          <div className={userstyle.option}>
-            <label htmlFor="business">Business Name</label>
-          <input
-            type="text"
-            name="business"
-            id="business"
-            placeholder="Business"
-            onChange={changeHandler}
-            value={user.business}
-          />
-          <p className={userstyle.error}>{formErrors.business}</p>
-          </div>
-          <div className={userstyle.option}>
-            <label htmlFor="roles">Designation</label>
-          <input
-            type="text"
-            name="roles"
-            id="roles"
-            placeholder="Role"
-            onChange={changeHandler}
-            value={user.roles}
-          />
-          <p className={userstyle.error}>{formErrors.roles}</p>
-          </div>
-          <div className={userstyle.option}>
-          <button className={userstyle.button_common} onClick={signupHandler}>
-            Register
-          </button>
-          </div>
+            <div className={userstyle.option}>
+              <label htmlFor="name">Name</label>
+              <input
+                type="text"
+                name="name"
+                id="name"
+                placeholder="Name"
+                onChange={changeHandler}
+                value={user.name}
+              />
+              <p className={userstyle.error}>{formErrors.name}</p>
+            </div>
+            <div className={userstyle.option}>
+              <label htmlFor="email">Email</label>
+              <input
+                type="email"
+                name="email"
+                id="email"
+                placeholder="@gmail.com"
+                onChange={changeHandler}
+                value={user.email}
+              />
+              <p className={userstyle.error}>{formErrors.email}</p>
+            </div>
+            <div className={userstyle.option}>
+              <label htmlFor="password">Password</label>
+              <input
+                type="password"
+                name="password"
+                id="password"
+                placeholder="****"
+                onChange={changeHandler}
+                value={user.password}
+              />
+              <p className={userstyle.error}>{formErrors.password}</p>
+            </div>
+            <div className={userstyle.option}>
+              <label htmlFor="cpassword">Confirm password</label>
+              <input
+                type="password"
+                name="cpassword"
+                id="cpassword"
+                placeholder="****"
+                onChange={changeHandler}
+                value={user.cpassword}
+              />
+              <p className={userstyle.error}>{formErrors.cpassword}</p>
+            </div>
+            <div className={userstyle.option}>
+              <label htmlFor="business">Business Name</label>
+              <input
+                type="text"
+                name="business"
+                id="business"
+                placeholder="Business"
+                onChange={changeHandler}
+                value={user.business}
+              />
+              <p className={userstyle.error}>{formErrors.business}</p>
+            </div>
+            <div className={userstyle.option}>
+              <label htmlFor="roles">Designation</label>
+              <input
+                type="text"
+                name="roles"
+                id="roles"
+                placeholder="Role"
+                onChange={changeHandler}
+                value={user.roles}
+              />
+              <p className={userstyle.error}>{formErrors.roles}</p>
+            </div>
+            <div className={userstyle.option}>
+              <button
+                className={userstyle.button_common}
+                onClick={signupHandler}
+              >
+                Register
+              </button>
+            </div>
           </div>
         </form>
       </div>

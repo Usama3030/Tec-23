@@ -1,4 +1,3 @@
-
 // import React, { useState } from "react";
 // import homestyles from "./Home.module.css";
 // import { AddTable } from "./RadioGroup";
@@ -53,12 +52,16 @@
 //   );
 // }
 
-
 import React, { useState } from "react";
 import homestyles from "./Home.module.css";
 import { AddTable } from "./RadioGroup";
 
-export function AddRemoteTable({ textBoxOptions, onInputChange, questionId, answerOptionsId }) {
+export function AddRemoteTable({
+  textBoxOptions,
+  onInputChange,
+  questionId,
+  answerOptionsId,
+}) {
   const [inputValues, setInputValues] = useState([{}]);
 
   const handleInputChange = (e, rowIndex) => {
@@ -69,7 +72,7 @@ export function AddRemoteTable({ textBoxOptions, onInputChange, questionId, answ
     const updatedInputValues = [...inputValues];
 
     // Initialize or create a new entry if necessary
-     updatedInputValues[rowIndex] = updatedInputValues[rowIndex] || {};
+    updatedInputValues[rowIndex] = updatedInputValues[rowIndex] || {};
     // Initialize or create a new entry if necessary
     // updatedInputValues[questionId] = updatedInputValues[questionId] || [];
     // updatedInputValues[questionId][rowIndex] = updatedInputValues[questionId][rowIndex] || {};
@@ -93,9 +96,9 @@ export function AddRemoteTable({ textBoxOptions, onInputChange, questionId, answ
   };
 
   return (
-    <div className={homestyles['input-container']}>
+    <div className={homestyles["input-container"]}>
       {inputValues.map((row, rowIndex) => (
-        <div className={homestyles['input-row']} key={rowIndex}>
+        <div className={homestyles["input-row"]} key={rowIndex}>
           {textBoxOptions?.map((option) => (
             <AddTable
               key={option.title}
@@ -108,7 +111,9 @@ export function AddRemoteTable({ textBoxOptions, onInputChange, questionId, answ
           ))}
         </div>
       ))}
-      <button className={homestyles['add-button']} onClick={addRow}>Add Row</button>
+      <button className={homestyles["add-button"]} onClick={addRow}>
+        Add Row
+      </button>
     </div>
   );
 }

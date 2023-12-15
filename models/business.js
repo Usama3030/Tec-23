@@ -1,7 +1,7 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const businessSchema = new mongoose.Schema({
-  name: { type: String, required: true},
+  name: { type: String, required: true },
   subbusinesses: {
     type: [
       {
@@ -10,8 +10,8 @@ const businessSchema = new mongoose.Schema({
           type: [
             {
               name: { type: String, required: true },
-              phone: { type: [String ] },
-              email: { type: [String ] },
+              phone: { type: [String] },
+              email: { type: [String] },
               addressLine1: { type: String },
               addressLine2: { type: String },
               postal_code: { type: String },
@@ -29,10 +29,6 @@ const businessSchema = new mongoose.Schema({
 const BusinessModel = mongoose.model("Businesses", businessSchema);
 
 module.exports = BusinessModel;
-
-
-
-
 
 // const businessSchema = new mongoose.Schema({
 //   name: { type: String, required: true },

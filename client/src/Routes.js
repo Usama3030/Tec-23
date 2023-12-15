@@ -32,10 +32,7 @@ function Routees({ userState, setUserState }) {
             )
           }
         />
-        <Route
-          path="/login"
-          element={<Login setUserState={setUserState} />}
-        />
+        <Route path="/login" element={<Login setUserState={setUserState} />} />
         <Route path="/home" element={<Home />} />
         <Route path="/list" element={<ListPage />} />
         <Route path="/dashboard" element={<Dashboard />} />

@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import homestyles from "./Home.module.css";
 import homeStyles from "./Home.module.css";
@@ -17,13 +16,16 @@ export function RadioGroup({ options, selectedValue, onChange, selectedItem }) {
               checked={selectedValue === option.value}
               onChange={() => onChange(option)}
             />
-            <span style={{ fontWeight: 'normal' }}>{option.title}</span>
+            <span style={{ fontWeight: "normal" }}>{option.title}</span>
           </label>
         </div>
       ))}
       {selectedItem && (
         <div className={homestyles["form-selected-item"]}>
-          <p className={homestyles["selected-type"]} style={{ fontWeight: 'normal' }}>
+          <p
+            className={homestyles["selected-type"]}
+            style={{ fontWeight: "normal" }}
+          >
             Selected: {selectedItem}
           </p>
           <button
@@ -67,7 +69,15 @@ export function TextInputRow({
   );
 }
 
-export function TextInputDMY({ label, name, id, value, onChange, placeholder, displayOptions }) {
+export function TextInputDMY({
+  label,
+  name,
+  id,
+  value,
+  onChange,
+  placeholder,
+  displayOptions,
+}) {
   return (
     <div className="TextInputDate">
       {/* {displayOptions?.showTitle !== false &&(
@@ -85,7 +95,15 @@ export function TextInputDMY({ label, name, id, value, onChange, placeholder, di
   );
 }
 
-export function TextInputNumber({ label, name, id, value, onChange, placeholder, displayOptions }) {
+export function TextInputNumber({
+  label,
+  name,
+  id,
+  value,
+  onChange,
+  placeholder,
+  displayOptions,
+}) {
   return (
     <div className="TextInputNumber">
       {/* {displayOptions?.showTitle !== false &&(
@@ -103,9 +121,16 @@ export function TextInputNumber({ label, name, id, value, onChange, placeholder,
   );
 }
 
-
-export function AddTable({ label, name, id, value, onChange, placeholder, displayOptions, rowOptions }) {
-
+export function AddTable({
+  label,
+  name,
+  id,
+  value,
+  onChange,
+  placeholder,
+  displayOptions,
+  rowOptions,
+}) {
   return (
     <div>
       {rowOptions.map((row, index) => (
@@ -124,14 +149,21 @@ export function AddTable({ label, name, id, value, onChange, placeholder, displa
   );
 }
 
-
-export function MultipleInputs({ label, name, id, value, onChange, placeholder, displayOptions, rowOptions }) {
-
+export function MultipleInputs({
+  label,
+  name,
+  id,
+  value,
+  onChange,
+  placeholder,
+  displayOptions,
+  rowOptions,
+}) {
   return (
     <div className="TextInputMultiple">
       {rowOptions.map((row, index) => (
         <div key={index}>
-           {/* {displayOptions?.showTitle !== false && (
+          {/* {displayOptions?.showTitle !== false && (
          <label htmlFor={id}>{label}:</label>
       )} */}
           <input

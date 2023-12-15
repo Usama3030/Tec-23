@@ -93,7 +93,6 @@ exports.registerUser = async (req, res) => {
   }
 };
 
-
 // login api
 exports.loginUser = async (req, res) => {
   try {
@@ -125,7 +124,6 @@ exports.loginUser = async (req, res) => {
       return res
         .status(200)
         .json({ message: "Login successful", user: userDetails });
-        
     } else {
       // Continue with password validation for non-testing scenarios
       const isPasswordValid = await bcrypt.compare(
@@ -133,10 +131,10 @@ exports.loginUser = async (req, res) => {
         user.password
       );
 
-    //      // Check if the user is verified
-    // if (!user.isVerified) {
-    //   return res.status(401).json({ error: "User is not verified" });
-    // }
+      //      // Check if the user is verified
+      // if (!user.isVerified) {
+      //   return res.status(401).json({ error: "User is not verified" });
+      // }
 
       if (!isPasswordValid) {
         return res.status(401).json({ error: "Invalid password" });
@@ -148,10 +146,10 @@ exports.loginUser = async (req, res) => {
         _id: user._id,
         name: user.name,
         email: user.email,
-        role: _.flatten(user.businesses.map(business => business.roles)),
+        role: _.flatten(user.businesses.map((business) => business.roles)),
         token: loginToken,
       };
-      
+
       res.status(200).json({ message: "Login successful", user: userDetails });
     }
   } catch (error) {

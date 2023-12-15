@@ -51,7 +51,7 @@ import { TextInputDMY } from "./RadioGroup";
 export function TextInputDate({ textBoxOptions, onInputChange, questionId }) {
   const [inputValues, setInputValues] = useState({});
 
-   const handleInputChange = (e) => {
+  const handleInputChange = (e) => {
     const { name, value } = e.target;
     const answerOption = {
       title: value,
@@ -66,7 +66,7 @@ export function TextInputDate({ textBoxOptions, onInputChange, questionId }) {
     onInputChange(questionId, answerOption);
   };
 
-   useEffect(() => {
+  useEffect(() => {
     // Initialize input values based on textBoxOptions
     const initialValues = {};
     textBoxOptions?.forEach((textbox) => {
